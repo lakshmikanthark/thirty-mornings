@@ -1,0 +1,19 @@
+{
+  "name": "thirty-mornings",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A cinematic 3D scroll story built around the 30-day lily-pad doubling riddle.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:bundle": "node scripts/build-bundle.mjs",
+    "build": "node scripts/build-site.mjs",
+    "check": "node checks/release-check.mjs",
+    "test": "npm run check",
+    "verify": "npm run build && npm run check",
+    "serve": "node scripts/serve.mjs dist",
+    "serve:source": "node scripts/serve.mjs ."
+  }
+}

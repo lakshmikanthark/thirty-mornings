@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-webgl="pending">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#86b8ce" />
+    <meta name="description" content="Can you solve the 30-day lily pad riddle? Watch the pond grow, make your guess, then reveal the answer." />
+    <meta name="color-scheme" content="only light" />
+    <title>Can You Solve the Lily Pad Riddle?</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#story">Skip into the story</a>
+
+    <div class="world" aria-hidden="true">
+      <canvas id="pond-canvas"></canvas>
+      <div class="fallback-pond">
+        <div class="fallback-hero-lilies">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="fallback-lilies"></div>
+        <div class="fallback-mist"></div>
+      </div>
+      <div class="world-haze"></div>
+      <div class="film-grain"></div>
+    </div>
+
+    <p id="story-status" class="sr-only" aria-live="polite">Day 1. One lily pad.</p>
+
+    <main id="story">
+      <section id="top" class="story-scene hero-scene" data-scene="0" aria-labelledby="hero-title">
+        <div class="story-line story-line--hero">
+          <h1 id="hero-title">Here’s a question.</h1>
+          <p>A patch of lily pads is growing across a pond.</p>
+        </div>
+        <p class="scroll-cue" aria-hidden="true">Scroll when you’re ready.</p>
+      </section>
+
+      <section class="story-scene doubling-scene" data-scene="1" aria-labelledby="doubling-title">
+        <div class="story-line story-line--left">
+          <h2 id="doubling-title">Every day, the patch doubles.</h2>
+          <p>One becomes two. Two become four. Four become eight.</p>
+        </div>
+      </section>
+
+      <section class="story-scene quiet-scene" data-scene="2" aria-labelledby="quiet-title">
+        <div class="story-line story-line--center">
+          <h2 id="quiet-title">It keeps doubling for 30 days.</h2>
+          <p>At first, almost nothing seems to change.</p>
+        </div>
+      </section>
+
+      <section class="story-scene rush-scene" data-scene="3" aria-labelledby="rush-title">
+        <div class="story-line story-line--right">
+          <h2 id="rush-title">On Day 30, the pond is completely covered.</h2>
+          <p>Now think about this.</p>
+        </div>
+      </section>
+
+      <section class="story-scene question-scene" data-scene="4" aria-labelledby="question-title">
+        <div class="story-line story-line--question">
+          <h2 id="question-title">When was the pond half covered?</h2>
+          <p class="question-line">Don’t calculate yet. Pick a day in your head.</p>
+          <div class="thinking-space" aria-hidden="true"></div>
+          <p class="thinking-whisper">Hold that answer for a second.</p>
+        </div>
+      </section>
+
+      <section class="story-scene reveal-scene guess-scene" data-scene="5" aria-labelledby="guess-title">
+        <div class="story-line story-line--reveal">
+          <h2 id="guess-title">Somewhere around Day 15… right?</h2>
+          <p>Half of 30 is 15. It feels like the obvious answer.</p>
+        </div>
+      </section>
+
+      <section class="story-scene reveal-scene reveal-29" data-scene="6" aria-labelledby="day29-title">
+        <div class="story-line story-line--reveal">
+          <h2 id="day29-title">But no. It’s Day 29.</h2>
+          <p>Go back just one day from full. On Day 29, the pond is exactly 50% covered.</p>
+        </div>
+      </section>
+
+      <section class="story-scene reveal-scene reveal-30" data-scene="7" aria-labelledby="day30-title">
+        <div class="story-line story-line--reveal">
+          <h2 id="day30-title">One more day changes everything.</h2>
+          <p>Day 29 → 50%. Day 30 → 100%. Half doubled once becomes full.</p>
+        </div>
+      </section>
+
+      <section class="story-scene meaning-scene" data-scene="8" aria-labelledby="meaning-title">
+        <div class="story-line story-line--left story-line--narrow">
+          <h2 id="meaning-title">We do this in life too.</h2>
+          <p>We work for a long time, see only a little progress, and start thinking it isn’t working.</p>
+        </div>
+      </section>
+
+      <section class="story-scene outro-scene" data-scene="9" aria-labelledby="outro-title">
+        <div class="story-line story-line--outro">
+          <h2 id="outro-title">Don’t quit at Day 28.</h2>
+          <p>At Day 28, this pond is only 25% covered. Two doublings later, it is full. Progress can feel the same: slow for a long time, then suddenly obvious. Give the work enough time to compound.</p>
+          <button class="replay-button" id="replay-button" type="button">Watch it again.</button>
+        </div>
+      </section>
+    </main>
+
+    <noscript>
+      <div class="noscript-message">A patch of lily pads doubles every day. If the pond is completely covered on Day 30, on what day was it half covered?</div>
+    </noscript>
+
+    <script defer src="./src/app.bundle.js"></script>
+  </body>
+</html>

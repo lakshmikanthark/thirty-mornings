@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '..');
+const src = (name) => fs.readFileSync(path.join(root, 'src', name), 'utf8');
+const stripExports = (code) => code.replaceAll('export const ', 'const ').replaceAll('export function ', 'function ').replaceAll('export class ', 'class ');
+const math = stripExports(src('math.js'));
+const story = stripExports(src('story.js').replace("import { formatPercent, storyStateForProgress } from './math.js';\n\n", ''));
+const webgl = stripExports(src('webgl.js'));
+const appSource = src('app.js');
+const app = appSource.slice(appSource.indexOf('const root = document.documentElement;'));
+const bundle = `/* Thirty Mornings production bundle. Classic script on purpose so index.html works from file://. */\n(() => {\n'use strict';\n${math}\n\n${story}\n\n${webgl}\n\n${app}\n})();\n`;
+fs.writeFileSync(path.join(root, 'src', 'app.bundle.js'), bundle);
+console.log('bundle build passed');
